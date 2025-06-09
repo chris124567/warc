@@ -1,0 +1,755 @@
+
+
+
+WARC/1.1
+WARC-Type: warcinfo
+WARC-Date: 2025-05-12T01:17:22Z
+WARC-Record-ID: <urn:uuid:b1302b4e-9b0b-4f9c-a4b2-bc5ce8d75d4f>
+Content-Length: 485
+Content-Type: application/warc-fields
+WARC-Filename: CC-MAIN-20250512011722-20250512041722-00000.warc.gz
+
+isPartOf: CC-MAIN-2025-21
+publisher: Common Crawl
+description: Wide crawl of the web for May 2025
+operator: Common Crawl Admin (info@commoncrawl.org)
+hostname: ip-10-67-67-56
+software: Apache Nutch 1.20 (modified, https://github.com/commoncrawl/nutch/)
+robots: checked via crawler-commons 1.5-SNAPSHOT (https://github.com/crawler-commons/crawler-commons)
+format: WARC File Format 1.1
+conformsTo: https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1/
+
+
+WARC/1.0
+WARC-Type: request
+WARC-Date: 2025-05-12T02:38:10Z
+WARC-Record-ID: <urn:uuid:0af5fa69-db69-4c58-9846-acbc6db23821>
+Content-Length: 336
+Content-Type: application/http; msgtype=request
+WARC-Warcinfo-ID: <urn:uuid:b1302b4e-9b0b-4f9c-a4b2-bc5ce8d75d4f>
+WARC-IP-Address: 212.237.217.130
+WARC-Target-URI: http://1039.alltrades.ru/shop/i16878.PERFECT_Art_13654.htm
+WARC-Protocol: http/1.1
+
+GET /shop/i16878.PERFECT_Art_13654.htm HTTP/1.1
+User-Agent: CCBot/2.0 (https://commoncrawl.org/faq/)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+If-Modified-Since: Thu, 03 Oct 2024 17:14:41 GMT
+Accept-Encoding: br,gzip
+Host: 1039.alltrades.ru
+Connection: Keep-Alive
+
+
+
+WARC/1.0
+WARC-Type: response
+WARC-Date: 2025-05-12T02:38:10Z
+WARC-Record-ID: <urn:uuid:ac989e58-2a09-4872-ac1d-99e005453ac1>
+Content-Length: 32565
+Content-Type: application/http; msgtype=response
+WARC-Warcinfo-ID: <urn:uuid:b1302b4e-9b0b-4f9c-a4b2-bc5ce8d75d4f>
+WARC-Concurrent-To: <urn:uuid:0af5fa69-db69-4c58-9846-acbc6db23821>
+WARC-IP-Address: 212.237.217.130
+WARC-Target-URI: http://1039.alltrades.ru/shop/i16878.PERFECT_Art_13654.htm
+WARC-Protocol: http/1.1
+WARC-Payload-Digest: sha1:SZ27YLKKSJ33HMDOHMHFCIYCPV36GW7Q
+WARC-Block-Digest: sha1:F2VBP3LB4E3WZIDML3CHRCZIQJWRLGCX
+WARC-Identified-Payload-Type: application/xhtml+xml
+
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Mon, 12 May 2025 02:38:08 GMT
+Content-Type: application/octet-stream
+Content-Length: 32260
+Last-Modified: Sun, 11 May 2025 15:47:06 GMT
+Connection: keep-alive
+ETag: "6820c67a-7e04"
+Content-type: text/html; charset=utf-8
+Accept-Ranges: bytes
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="shortcut icon" href="http://1039.alltrades.ru/images/favicon.jpg" type="image/x-icon">
+
+<title></title>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta property="og:image" content="/images/shop_items/16878.jpg">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+	
+<style>div#wrapper div.top_wrapper img#hat { float: none; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; }
+div#wrapper div.top_wrapper div#top_slogan { text-align: left; color: #fed094; background-repeat: repeat; background-position: left top; padding: 0px; margin: 30px 0px 0px 450px; font: 34px Tahoma; }
+div#wrapper div.top_wrapper div#top_slogan a { color: #fed094; font: 34px Tahoma; text-decoration: none; }
+div#wrapper div.top_wrapper div.top_ph#top_phone { text-align: left; color: #ffffff; background-repeat: repeat; background-position: left top; padding: 0px; margin: 150px 0px 0px 450px; font: 26px Tahoma; }
+div#wrapper div.top_wrapper div.top_ph#top_phone a { color: #ffffff; font: 26px Tahoma; text-decoration: none; }
+div#wrapper div#auth_form { text-align: left; color: #ffffff; background-repeat: repeat; background-position: left top; border: solid 0px #ffffff; padding: 6px 10px 6px 10px; margin: 0px; font: bold 13px/16px Tahoma; }
+div#wrapper div#auth_form a { color: #ffffff; font: bold 11px/13px Tahoma; text-decoration: none; }
+div#wrapper div div#left_col a img { float: none; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; }
+#search_results td.img { padding: 0 10px 10px 0; text-align: center; }
+</style>
+
+<noindex>
+<link rel="stylesheet" type="text/css" href="https://alltrades.ru/js/fancybox-3.1/fancybox.css">
+<script src="https://alltrades.ru/js/jquery-3.3.1.min.js"></script>
+<script src="https://alltrades.ru/js/fancybox-3.1/fancybox.jquery.js"></script>
+
+<script src="https://alltrades.ru/js/fun.js"></script>
+
+<script src="https://alltrades.ru/js/jquery.slider.min.js"></script>
+
+<script src="/modules.js"></script>
+<link rel="stylesheet" type="text/css" href="https://alltrades.ru/css/jquery.slider.min.css">
+<link rel="stylesheet" type="text/css" href="https://alltrades.ru/js/fancybox-3.1/fancybox.css">
+<link rel="stylesheet" type="text/css" href="/css/mod_at_messenger.css">
+
+</noindex>
+
+                <meta name="msvalidate.01" content="1E529D4AA7532BAEF5B562AE1C932232" />
+
+<meta name="google-site-verification" content="czCGrhowVrOwdKXbIJEZPPGWnXWUW8EvE6Lx0Cc9FFI" />
+<meta name='wmail-verification' content='feaf1fde363c33beb5f3e00e7f3dc0e0' />
+<meta name="google-site-verification" content="mytzcrVFq4CgHbBEzK52w2Xan0UXWFiYytSVXiPUAwI" />
+</head>
+<body>
+
+<!-- Отображение ошибок -->
+<script>
+var error = '';
+var errors = {
+10: 'Указанный e-mail уже зарегистрирован!',
+11: 'Необходимо пройти проверку "Я не робот"!',
+12: 'Текущий пароль указан неверно!',
+13: 'Пароль и подтверждение пароля должны совпадать!',
+14: 'Не задан новый пароль!',
+15: 'Пользователь с таким e-mail не зарегистрирован',
+16: 'Не заполнено поле E-mail',
+17: 'Не заполнены поля: пароль и подтверждение пароля!',
+18: 'Ошибка отправки формы!',
+19: 'Ошибка!',
+20: 'Не заполнены поля: проверочный код!',
+21: 'Файл картинки для аватара не загружен',
+22: 'Файл картинки слишком велик. Файл по размеру не должен превышать 100 Кб',
+23: 'Неверный формат файла картинки. Аватар должен быть в формате JPG, GIF или PNG',
+24: 'Не заполнено поле "Адрес доставки"',
+25: 'Учетная запись не найдена!',
+26: 'Ошибка авторизации: аккаунт не активирован',
+27: 'Ошибка авторизации: аккаунт заблокирован',
+28: 'Ошибка авторизации: данные для входа неверны',
+29: 'Ошибка авторизации: доступ заблокирован',
+30: 'Не заполнено поле телефон',
+31: 'Ошибка добавления заявки!',
+32: 'Купон уже активирован ранее',
+33: 'Купон не найден',
+34: 'Ошибка добавления товара',
+35: 'Недостаточно товаров в наличии',
+36: 'Поставьте оценку от 1 до 5 (при помощи звездочек)',
+37: 'Не заполнено поле "Ваше имя"',
+39: 'Не заполнено поле "Комментарий"',
+40: 'Ошибка отправки формы',
+42: 'Вы уже голосовали',
+43: 'Необходимо выбрать вариант ответа',
+44: 'Необходимо авторизоваться!',
+45: 'Ошибка добавления комментария!',
+}
+
+</script>
+<!--/ Отображение ошибок -->
+
+
+<div style="filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);" id="curtain"></div>
+<div id="message_box" edit_title="Блок сообщений"></div>
+<div id="wrapper">
+
+<div id="auth_form" edit_title="Форма авторизации">
+
+<form action="/?show=profile&act=login" method=post>
+<table>
+<tr>
+<td>E-mail:</td>
+<td><input type="text" name="email" class="pt_input"></td>
+<td style="padding-left:5px;">Пароль:</td>
+<td><input type="password" name="password" class="pt_input"></td>
+<td id="remember_me_p"><input type="checkbox" name="remember_me" value="1" id="remember_me"> <label for="remember_me">запомнить меня</label></td>
+<td><input type="image" src="/images/btn_login.gif"></td>
+<td style="padding-left:5px;"><a href="/?show=profile&act=restore_password">Забыли пароль?</a><br><a href="/?show=profile&act=register">Зарегистрироваться</a></td>
+
+</tr>
+</table>
+</form>
+
+</div>
+
+<div class="top_wrapper edit_css"> 
+
+<img src="https://1039.alltrades.ru/images/9912.jpg" id="hat" edit_title="Картинка на шапке"    alt="Картинка на шапке">
+</div>
+<div id="top_menu" edit_title="Строка меню">
+
+<div id="search_form_1">
+<form action="/" method="get"><input type=hidden name="show" value="search">
+<table>
+<tr>
+<td class="edit_txt" id="search_1">Найти:</td>
+<td><input type="text" class="pt_input" style="width:150px;" name="keywords" value="" onfocus="this.value='';"></td>
+<td><input type="image" src="/images/btn_search.gif"></td>
+</tr>
+</table>
+</form>
+</div>
+
+<ul>
+
+<li edit_title="Пункт меню"><a href="/">Главная</a></li>
+
+<li edit_title="Пункт меню"><a href="/about.htm">О нас</a></li>
+
+<li edit_title="Пункт меню"><a href="/how_to_buy.htm">Доставка</a></li>
+
+<li edit_title="Пункт меню"><a href="/?show=form&id=1">Напишите нам</a></li>
+
+<li edit_title="Пункт меню"><a href="/partner">Гарантия</a></li>
+
+<li edit_title="Пункт меню"><a href="/optovik">Сотрудничество</a></li>
+
+</ul>
+</div>
+<div style="overflow:hidden;">
+<div id="left_col" edit_title="Левая колонка">
+<!--(Левая колонка)--><div class="block"><div class="block_header">Каталог товаров</div><div class="block_cont"><ul>
+
+<li>
+
+<a href="/shop/c66.Muzhskie_chasy.htm"><p><strong>МУЖСКИЕ ЧАСЫ</strong></p></a>
+
+</li>
+
+<li>
+
+<a href="/shop/c67.Zhenskie_chasy.htm"><p><strong>ЖЕНСКИЕ ЧАСЫ</strong></p></a>
+
+</li>
+
+<li>
+
+<a href="/shop/c30.shveycarskie_chasy.htm"><p><strong>Часы BISSET (Швейцария)</strong></p></a>
+
+</li>
+
+<li>
+
+<a href="/shop/c32.rubicon.htm"><p><strong>Часы RUBICON (Япония)</strong></p></a>
+
+</li>
+
+<li>
+
+<a href="/shop/c54.GINO_ROSSI.htm" onclick="if($('#subcats_54').css('display')=='none'){$('#subcats_54').show();return false;}else{return true;}"><p><strong>Часы GINO ROSSI  (ITALY FASHION)</strong></p></a>
+<ul class="subcategories" id="subcats_54" style="display:none;">
+
+<li><a href="/shop/c55.Muzhskie.htm">Мужские</a></li>
+
+<li><a href="/shop/c56.Zhenskie.htm">Женские</a></li>
+
+<li><a href="/shop/c57.Seriya_PREMIUM.htm">Серия PREMIUM</a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c68.Chasy_JORDAN_KERR_Polsha_p_img_src_images_poland_1.jpg_alt_width_30_height_20_p_.htm" onclick="if($('#subcats_68').css('display')=='none'){$('#subcats_68').show();return false;}else{return true;}"><p><strong>Часы JORDAN KERR (Польша)</strong></p></a>
+<ul class="subcategories" id="subcats_68" style="display:none;">
+
+<li><a href="/shop/c70.Muzhskie.htm">Мужские</a></li>
+
+<li><a href="/shop/c71.Zhenskie.htm">Женские</a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c60.ALBATROSS.htm" onclick="if($('#subcats_60').css('display')=='none'){$('#subcats_60').show();return false;}else{return true;}"><p><strong>Часы ALBATROSS (Польша)</strong></p></a>
+<ul class="subcategories" id="subcats_60" style="display:none;">
+
+<li><a href="/shop/c62.Zhenskie.htm">Женские </a></li>
+
+<li><a href="/shop/c61.Muzhskie.htm">Мужские </a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c87.Chasy_DANIEL_KLEIN.htm" onclick="if($('#subcats_87').css('display')=='none'){$('#subcats_87').show();return false;}else{return true;}"><p><strong>Часы DANIEL KLEIN</strong></p> </a>
+<ul class="subcategories" id="subcats_87" style="display:none;">
+
+<li><a href="/shop/c89.Muzhskie.htm">Мужские</a></li>
+
+<li><a href="/shop/c88.Zhenskie_chasy_DANIEL_KLEIN.htm">Женские </a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c90.Chasy_ROXAR_Rossiya_p_img_src_images_eu-flag.gif_alt_width_30_height_20_p_.htm" onclick="if($('#subcats_90').css('display')=='none'){$('#subcats_90').show();return false;}else{return true;}"><p><strong>Часы ROXAR  (Россия)</strong></p> </a>
+<ul class="subcategories" id="subcats_90" style="display:none;">
+
+<li><a href="/shop/c92.Zhenskie.htm">Женские</a></li>
+
+<li><a href="/shop/c91.Muzhskie.htm">Мужские</a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c78.Chasy_OPTIMA_POLShA_p_img_src_images_poland_1.jpg_alt_width_30_height_20_p_.htm" onclick="if($('#subcats_78').css('display')=='none'){$('#subcats_78').show();return false;}else{return true;}"><p><strong>Бижутерийные часы (Польша)</strong></p> </a>
+<ul class="subcategories" id="subcats_78" style="display:none;">
+
+<li><a href="/shop/c79.Muzhskie.htm">Мужские</a></li>
+
+<li><a href="/shop/c80.Zhenskie.htm">Женские</a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c63.Chasy_OCEANIC_TRENDY_SPORT_WATCH_p_img_src_images_poland.jpg_alt_width_30_height_20_p_.htm" onclick="if($('#subcats_63').css('display')=='none'){$('#subcats_63').show();return false;}else{return true;}"><p><strong>Часы OCEANIC (Польша)</strong></p> </a>
+<ul class="subcategories" id="subcats_63" style="display:none;">
+
+<li><a href="/shop/c64.Muzhskie.htm">Мужские </a></li>
+
+<li><a href="/shop/c65.Zhenskie.htm">Женские</a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c75.Chasy_PERFECT.htm" onclick="if($('#subcats_75').css('display')=='none'){$('#subcats_75').show();return false;}else{return true;}"><p><strong>Часы PERFECT</strong></p></a>
+<ul class="subcategories" id="subcats_75" style="display:none;">
+
+<li><a href="/shop/c76.Muzhskie.htm">Мужские</a></li>
+
+<li><a href="/shop/c77.Zhenskie.htm">Женские </a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c72.Chasy_PACIFIC.htm" onclick="if($('#subcats_72').css('display')=='none'){$('#subcats_72').show();return false;}else{return true;}"><p><strong>Часы PACIFIC (Польша)</strong></p></a>
+<ul class="subcategories" id="subcats_72" style="display:none;">
+
+<li><a href="/shop/c73.Muzhskie.htm">Мужские</a></li>
+
+<li><a href="/shop/c74.Zhenskie.htm">Женские</a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c93._p_strong_Chasy_NAVIFORCE_strong_p_.htm" onclick="if($('#subcats_93').css('display')=='none'){$('#subcats_93').show();return false;}else{return true;}"><p><strong>Часы NAVIFORCE</strong></p></a>
+<ul class="subcategories" id="subcats_93" style="display:none;">
+
+<li><a href="/shop/c94.Muzhskie.htm">Мужские</a></li>
+
+<li><a href="/shop/c95.Zhenskie.htm">Женские </a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c36.braslety.htm" onclick="if($('#subcats_36').css('display')=='none'){$('#subcats_36').show();return false;}else{return true;}"><p><span style="color: #ff6600;"><strong>ЖЕНСКАЯ БИЖУТЕРИЯ</strong></span></p></a>
+<ul class="subcategories" id="subcats_36" style="display:none;">
+
+<li><a href="/shop/c82.Broshi.htm">Броши</a></li>
+
+<li><a href="/shop/c81.KOLE.htm">Колье</a></li>
+
+<li><a href="/shop/c49.Zhenskie_braslety.htm">Браслеты</a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c84._p_span_style_color_ff6600_strong_MUZhSKAYa_BIZhUTERIYa_strong_span_p_.htm" onclick="if($('#subcats_84').css('display')=='none'){$('#subcats_84').show();return false;}else{return true;}"><p><span style="color: #ff6600;"><strong>МУЖСКАЯ БИЖУТЕРИЯ</strong></span></p></a>
+<ul class="subcategories" id="subcats_84" style="display:none;">
+
+<li><a href="/shop/c85.Braslety.htm">Браслеты</a></li>
+
+<li><a href="/shop/c86.Ukrasheniya_na_sheyu.htm">Украшения на шею</a></li>
+
+</ul>
+
+</li>
+
+<li>
+
+<a href="/shop/c44.Rasprodazha.htm" onclick="if($('#subcats_44').css('display')=='none'){$('#subcats_44').show();return false;}else{return true;}"><p><strong><span style="color: #ff0000; font-size: small;">РАСПРОДАЖА</span></strong></p></a>
+<ul class="subcategories" id="subcats_44" style="display:none;">
+
+<li><a href="/shop/c46.Braslety.htm">Распродажа бижутерии</a></li>
+
+<li><a href="/shop/c45.ChASY.htm">Распродажа часов</a></li>
+
+</ul>
+
+</li>
+
+</ul></div></div>
+
+
+
+
+
+
+
+<br></br><img src="http://1039.alltrades.ru/images/free210.jpg"></a>
+<br></br>
+<div class="block"><div class="block_header">Новости</div><div class="block_cont">
+<p class="news_block_header"><a href="/news/n184.Kak_otlichit_originalnye_chasy_Rubicon_ot_poddelki.htm">Как отличить оригинальные часы Rubicon от подделки</a></p>
+<p class="news_block_announce">Японские часы Rubicon популярны во всем мире благодаря высокому качеству, функциональности и стильному дизайну. По причине их востребованности на рынке появилось много подделок.</p>
+<p class="news_block_date">22.11.2020</p>
+
+<p class="news_block_header"><a href="/news/n183.Kak_pravilno_nosit_chasy_na_ruke.htm">Как правильно носить часы на руке</a></p>
+<p class="news_block_announce">Наручные часы помимо своей основной функции выступают в качестве стильного аксессуара. Они подчеркивают статус обладателя и завершают образ.</p>
+<p class="news_block_date">18.10.2020</p>
+
+<p class="news_block_header"><a href="/news/n182.Osobennosti_vybora_chasov_pod_stil_odezhdy.htm">Особенности выбора часов под стиль одежды</a></p>
+<p class="news_block_announce">Часы – не только функциональный предмет, но и дополнение стиля. Поэтому важно подбирать их с учетом того, как вы обычно предпочитаете одеваться и какой образ жизни ведете.</p>
+<p class="news_block_date">03.10.2020</p>
+
+<p class="news_block_header"><a href="/news/n181.Kak_pravilno_nosit_chasy_vmeste_s_brasletom.htm">Как правильно носить часы вместе с браслетом</a></p>
+<p class="news_block_announce">Сочетание часов и браслета сейчас в бренде. Есть общие правила комбинации этих аксессуаров. </p>
+<p class="news_block_date">22.09.2020</p>
+
+<p><a href="/news/">Архив новостей</a> &nbsp; <b><a href="/rss2.xml">RSS</a></b></p></div></div>
+
+
+<br></br>
+
+<!--LiveInternet counter--><script type="text/javascript">
+document.write("<a href='//www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t50.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet' "+
+"border='0' width='31' height='31'></a>")
+</script><!--/LiveInternet-->
+
+
+
+<!-- Yandex.Metrika informer -->
+<a href="http://metrika.yandex.ru/stat/?id=13447294&amp;from=informer"
+target="_blank" rel="nofollow"><img src="//bs.yandex.ru/informer/13447294/1_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+style="width:80px; height:15px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры)" onclick="try{Ya.Metrika.informer({i:this,id:13447294,lang:'ru'});return false}catch(e){}"/></a>
+<!-- /Yandex.Metrika informer -->
+
+<!-- Yandex.Metrika counter -->
+<script>
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter13447294 = new Ya.Metrika({id:13447294});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/13447294" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<script async="async" src="https://w.uptolike.com/widgets/v1/zp.js?pid=1227034" type="text/javascript"></script>
+
+
+
+
+
+
+
+<div class="block"><div class="block_header">Новые статьи</div><div class="block_cont">
+<div  class="dle_155">
+
+<p><a href="/articles/a155.Kak_otlichit_brendovye_chasy_ot_poddelki.htm"><img src="/images/articles/155_100x100_3.jpg"></a></p>
+
+<p class="articles_header"><a href="/articles/a155.Kak_otlichit_brendovye_chasy_ot_poddelki.htm">Как отличить брендовые часы от подделки</a></p>
+<p class="articles_announce">Качественные японские или швейцарские часы от известного бренда – это роскошный аксессуар, способный подчеркнуть статус владельца и его безупречный стиль.</p>
+</div>
+
+<div  class="dle_154">
+
+<p><a href="/articles/a154.Preimuschestva_i_osobennosti_yaponskih_naruchnyh_chasov.htm"><img src="/images/articles/154_100x100_3.jpg"></a></p>
+
+<p class="articles_header"><a href="/articles/a154.Preimuschestva_i_osobennosti_yaponskih_naruchnyh_chasov.htm">Преимущества и особенности японских наручных часов</a></p>
+<p class="articles_announce">Наручные часы японского производства – это высокое качество и практичность. По функционалу и характеристикам они ничуть не хуже европейской продукции, но при этом стоят дешевле.</p>
+</div>
+
+<div  class="dle_153">
+
+<p><a href="/articles/a153.Kak_vybrat_bizhuteriyu_dlya_muzhchiny.htm"><img src="/images/articles/153_100x100_3.jpg"></a></p>
+
+<p class="articles_header"><a href="/articles/a153.Kak_vybrat_bizhuteriyu_dlya_muzhchiny.htm">Как выбрать бижутерию для мужчины</a></p>
+<p class="articles_announce">Бижутерия, так же является неотъемлемой частью мужского лука, так давайте же разберем как выбрать подходящие украшения для себя. Прочитав эту статью, вы узнаете: как выбрать подходящею бижутерию для себя, какой материал выбрать, какие бренды лидируют на рынке.</p>
+</div>
+
+<div  class="dle_152">
+
+<p><a href="/articles/a152.Dropshipping_naruchnyh_chasov_kak_vid_udobnogo_i_garantirovannogo_zarabotka..htm"><img src="/images/articles/152_100x100_3.png"></a></p>
+
+<p class="articles_header"><a href="/articles/a152.Dropshipping_naruchnyh_chasov_kak_vid_udobnogo_i_garantirovannogo_zarabotka..htm">Дропшиппинг наручных часов, как вид удобного и гарантированного заработка.</a></p>
+<p class="articles_announce">Дропшиппинг - это прямая поставка товаров от поставщика к покупателю, при которой продавец (посредник) не хранит товары у себя на складе, или вовсе обходится без него. Товары отправляются заказчику непосредственно со склада производителя, поставщика, оптовика или дистрибьютора.</p>
+</div>
+
+<div  class="dle_151">
+
+<p><a href="/articles/a151.Kak_vybrat_bizhuteriyu_dlya_zhenschiny.htm"><img src="/images/articles/151_100x100_3.jpg"></a></p>
+
+<p class="articles_header"><a href="/articles/a151.Kak_vybrat_bizhuteriyu_dlya_zhenschiny.htm">Как выбрать бижутерию для женщины</a></p>
+<p class="articles_announce">На сегодняшний день большинство женщин следят за своим внешним видом. Существует много хитростей, как предать вашему образу щепотку элегантности. Бижутерия так же не исключение из хитростей. Итак, давайте же узнаем, каким образом подобрать украшение под себя, дорогие женщины.</p>
+</div>
+
+<p><a href="/articles/">Все статьи</a></p></div></div>
+
+<p><a href="http://1039.alltrades.ru/shop/c84._p_span_style_color_ff6600_strong_MUZhSKAYa_BIZhUTERIYa_strong_span_p_.htm" target="_blank"><img src="http://1039.alltrades.ru/images/1232.jpg" alt="" width="175" height="122" /></a></p>
+
+<!--(Левая колонка, конец)-->
+</div>
+<div id="main_col">
+<div id="right_col" edit_title="Правая колонка">
+<!--(Правая колонка)--><div class="block"><div class="block_header">Корзина</div>
+<div class="block_cont">
+<table id="basket_prew">
+<tr>
+<td>товаров</td>
+<td><input type="text" id="basket_total" class="pt_input" value="0"></td>
+</tr>
+<tr>
+<td>на сумму</td>
+<td><input type="text" id="basket_amount" class="pt_input" value="0"></td>
+</tr>
+</table>
+<a href="/?show=basket">перейти в корзину</a>
+</div></div>
+<script src="http://userapi.com/js/api/openapi.js?48"></script>
+
+<br></br>
+<a href="http://1039.alltrades.ru/parsing"target="_blank"><img src="http://1039.alltrades.ru/images/parsing.jpg"></a><br></br>
+
+<br></br><p><img src="http://1039.alltrades.ru/images/garantiya.jpg" /></p><br></br>
+
+<a href="http://1039.alltrades.ru/instrukciya1.jpg"target="_blank"><img src="http://1039.alltrades.ru/images/Instrukciya175.jpg"></a><br></br>
+
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?162"></script>
+
+<!-- VK Widget -->
+<div id="vk_groups"></div>
+<script type="text/javascript">
+VK.Widgets.Group("vk_groups", {mode: 3}, 20412359);
+</script>
+<br></br>
+<img src="http://1039.alltrades.ru/images/free210.jpg"></a>
+<br></br>
+<div class="block"><div class="block_header">Новинки</div><div class="block_cont">
+<p><a href="/shop/i2144.Art_1804.htm"><img id="main_photo_2144" src="/images/shop_items/2144_120x120.jpg"></a></p>
+<p><b><a href="/shop/i2144.Art_1804.htm">Арт # 1804</a></b></p>
+<p></p>
+<p><b>Цена: 990 руб</b><br><br></p>
+
+<p><a href="/shop/i2425.Art_2135.htm"><img id="main_photo_2425" src="/images/shop_items/2425_120x120.jpg"></a></p>
+<p><b><a href="/shop/i2425.Art_2135.htm">Арт # 2135</a></b></p>
+<p></p>
+<p><b>Цена: 990 руб</b><br><br></p>
+</div></div>
+
+ <br></br>
+
+<a href="http://www.390.alltrades.ru/"target="_blank"><img src="http://1039.alltrades.ru/images/ital_21_.jpg"></a>
+
+<br></br> 
+
+<a href="http://1039.alltrades.ru/shop/c36.braslety.htm?os=15/"target="_blank"><img src="http://1039.alltrades.ru/images/191.jpg"></a>
+<!--(Правая колонка, конец)-->
+
+</div>
+<div id="contents" edit_title="Центральное поле">
+<h1 id="page_main_header">PERFECT Арт # 14163</h1>
+<div id="status" edit_title="Адресная строка" itemscope itemtype="http://schema.org/BreadcrumbList">/ <a href="/" style="/">Главная</a>
+
+ > <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a href="/shop/" itemprop="item"><span itemprop="name">Интернет-магазин</span><meta itemprop="position" content="1"/></a></span>
+
+ > <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a href="/shop/c75.Chasy_PERFECT.htm" itemprop="item"><span itemprop="name"><p><strong>Часы PERFECT</strong></p></span><meta itemprop="position" content="2"/></a></span>
+
+ > <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a href="/shop/c76.Muzhskie.htm" itemprop="item"><span itemprop="name">Мужские</span><meta itemprop="position" content="3"/></a></span>
+
+ > <span itemscope itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a href="" itemprop="item"><span itemprop="name">PERFECT Арт # 14163</span><meta itemprop="position" content="4"/></a></span>
+</div>
+<div itemscope itemtype="http://schema.org/Product">
+
+<meta itemprop="name" content="PERFECT Арт # 14163" />
+<!-- фото товара-->
+
+<div id="item_photos">
+
+<div id="main_photo">
+
+
+<a href="/images/shop_items/16878.jpg" class="fancy" data-fancybox="gallery" data-caption="" rel="gallery" title=""><img alt="" itemprop="image" id="main_photo_16878" src="/images/shop_items/16878_250x250.jpg"></a></div>
+<!-- дополнительные фото -->
+
+<div id="add_photos_list">
+   
+<div><a href="/images/shop_items/16878-1.jpg" class="fancy" data-fancybox="gallery" data-caption="" rel="gallery" title=""><img src="/images/shop_items/16878-1_50x50.jpg" alt=""></a></div>
+
+	
+</div>
+
+</div>
+
+<!-- конец фото -->
+<div class="item-description" itemprop="description"><p>Часы мужские наручные на браслете&nbsp;<strong>PERFECT</strong></p>
+<p>Модель<strong>&nbsp;M118</strong></p>
+<p><strong>Механизм: </strong>&nbsp;кварцевый,&nbsp;<strong>MIYOTA&nbsp;</strong>(Япония)</p>
+<p><strong>Материал корпуса:&nbsp;</strong>антиаллергичный материал<strong>&nbsp;(NICKEL FREE)</strong>&nbsp;с напылением по технологии <strong>IPG</strong></p>
+<p><strong>Размеры корпуса: &nbsp;</strong>ширина&nbsp;45 мм, высота&nbsp;45 мм, толщина&nbsp;11 мм</p>
+<p><strong>Циферблат: </strong>гильошированый</p>
+<p><strong>Ремешок:&nbsp;</strong>металлический браслет, ширина&nbsp;22-20 мм, длина с часами 200 мм (МАХ)</p>
+<p><strong>Застежка:</strong>&nbsp;классическая</p>
+<p><strong>Стекло:&nbsp;</strong>минеральное, устойчивое к царапинам</p>
+<p><strong>Функции:&nbsp;</strong>часы, минуты, секунды</p>
+<p>Цвет как на фото.</p>
+<p>Подарочная коробка в комплекте</p>
+<p>Мужские кварцевые часы наручные&nbsp;</p></div>
+
+
+
+<!-- Поля, влияющие на цену товара -->
+<form class="add2basket_form_16878">
+
+<!-- Конец полей, влияющих на цену товара -->
+
+
+
+
+<p class="price item-main-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+<meta itemprop="price" content="4420" />
+<meta itemprop="priceCurrency" content="RUB" />
+<link itemprop="availability" href="https://schema.org/InStock" />
+<span id="main_price_16878" class="price">4420</span> руб  <a href="/?show=basket&act=add&id=16878" onclick="alltrades_shop.add_to_basket(this, '16878');return false;"><img class="img_2basket" src="/images/2basket.png"></a></p>
+
+<p><a href="#" onclick="alltrades_shop.one_click_buy('16878');return false;" title="Купить в один клик"><img src="/images/at_1click_btn1.png"></a></p>
+
+
+
+</form>
+
+
+
+
+
+<!-- добавить/удалить к сравнению 
+
+-->
+
+
+<p>
+
+<a href="/shop/i16877.PERFECT_Art_13653.htm">Предыдущий</a> &nbsp; | &nbsp;
+
+<a href="/shop/c76.Muzhskie.htm">Назад в раздел</a>
+
+&nbsp; | &nbsp; <a href="/shop/i16880.PERFECT_Art_13655.htm">Следующий</a>
+
+</p>
+
+
+
+
+
+<!-- Комментарии к товару -->      
+	<h2> — отзывы</h2>
+	
+	
+	
+	<p class="no-comments">Нет отзывов.</p>
+	
+	
+		<p>Для того, чтобы добавлять отзывы, необходимо <a href="/?show=profile&act=register">зарегистрироваться</a></p>
+	
+	
+	<!--/ Комментарии к товару -->
+</div>
+<script>$().ready(function(){alltrades_shop.get_item_variant(16878);});</script>
+			
+</div>
+</div>
+</div>
+<div id="footer" edit_title="Нижний блок" class="edit_txt">
+&copy; Интернет-магазин оригинальных наручных часов<br></br>
+г.Калининград     +7(911)864-16-42      <br></br>
+
+</div>
+<script>$().ready(function() {
+	
+
+});</script>
+	
+
+<!-- Sliza.ru - Widget -->
+<script type="text/javascript" src="https://sliza.ru/widget.php?id=1890&h=2a60b4589b0148641591edd6ad7d4042&t=s" async defer></script>
+<!-- /// -->
+
+<script type="text/javascript" src="https://cloudparser.ru/widget/script?hash=a575bcefdc7a11dec7302ce66652db242e7931ea" async></script>
+
+</body>
+
+
+</html>
+<html>
+    <head>
+    
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+Verification: 59ce05db6be27c1d</body>
+</html>
+<head>
+<meta name='yandex-verification' content='59ce05db6be27c1d' />
+<meta name="yandex-verification" content="59ce05db6be27c1d" />  
+</head>
