@@ -104,31 +104,6 @@ class Record {
     std::pair<std::string_view, bool> warcSegmentOriginID_{};
     std::pair<size_t, bool> warcSegmentTotalLength_{};
 };
-
-namespace field {
-constexpr std::string_view kWarcRecordID = "WARC-Record-ID";
-constexpr std::string_view kContentLength = "Content-Length";
-constexpr std::string_view kWarcDate = "WARC-Date";
-constexpr std::string_view kWarcType = "WARC-Type";
-constexpr std::string_view kContentType = "Content-Type";
-constexpr std::string_view kWarcConcurrentTo = "WARC-Concurrent-To";
-constexpr std::string_view kWarcBlockDigest = "WARC-Block-Digest";
-constexpr std::string_view kWarcPayloadDigest = "WARC-Payload-Digest";
-constexpr std::string_view kWarcIPAddress = "WARC-IP-Address";
-constexpr std::string_view kWarcRefersTo = "WARC-Refers-To";
-constexpr std::string_view kWarcRefersToTargetURI = "WARC-Refers-To-Target-URI";
-constexpr std::string_view kWarcRefersToDate = "WARC-Refers-To-Date";
-constexpr std::string_view kWarcTargetURI = "WARC-Target-URI";
-constexpr std::string_view kWarcTruncated = "WARC-Truncated";
-constexpr std::string_view kWarcWarcinfoID = "WARC-Warcinfo-ID";
-constexpr std::string_view kWarcFilename = "WARC-Filename";
-constexpr std::string_view kWarcProfile = "WARC-Profile";
-constexpr std::string_view kWarcIdentifiedPayloadType = "WARC-Identified-Payload-Type";
-constexpr std::string_view kWarcSegmentNumber = "WARC-Segment-Number";
-constexpr std::string_view kWarcSegmentOriginID = "WARC-Segment-Origin-ID";
-constexpr std::string_view kWarcSegmentTotalLength = "WARC-Segment-Total-Length";
-}  // namespace field
-
 }  // namespace warc
 
 #endif /* WARC_H */
