@@ -10,13 +10,6 @@
 
 warc::Record::Record() {}
 
-// caseInsensitiveEqual compares two strings for equality ignoring case.
-bool caseInsensitiveEqual(const std::string_view s1, const std::string_view s2) {
-    return std::equal(s1.begin(), s1.end(), s2.begin(), s2.end(), [](const char c1, const char c2) {
-        return std::tolower(c1) == std::tolower(c2);
-    });
-}
-
 // removeAngleBrackets removes leading and trailing angle brackets.
 // "<x>" -> "x"
 // "x" -> "x"
@@ -81,9 +74,8 @@ std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view
         }
 
         // Each named field consists of a name followed by a colon (“:”) and
-        // the field value. Field names are not case-sensitive. The field value
-        // may be preceded by any amount of linear white space (LWS), though a
-        // single space is preferred.
+        // the field value.... The field value may be preceded by any amount
+        // of linear white space (LWS), though a single space is preferred.
         // Not supported: "Header fields can be extended over multiple lines
         // by preceding each extra line with at least one space or tab
         // character"
@@ -98,105 +90,153 @@ std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view
 
         const auto key = line.substr(0, colon_pos);
         const auto value = line.substr(value_pos);
-        if (caseInsensitiveEqual(key, warc::field::kWarcRecordID)) {
-            // WARC-Record-ID   = "WARC-Record-ID" ":" "<" uri ">"
-            warcRecordID_ = {removeAngleBrackets(value), true};
-        } else if (caseInsensitiveEqual(key, warc::field::kContentLength)) {
-            // Content-Length   = "Content-Length" ":" 1*DIGIT
-            const auto result = std::from_chars(value.data(), value.data() + value.size(), contentLength_.first);
-            if (result.ec == std::errc::invalid_argument || result.ec == std::errc::result_out_of_range) {
-                return {warc::error::Error::kInvalidInteger, consumed};
+
+        const auto field = warc::field::fromString(key);
+        switch (field) {
+            case warc::field::Field::kWarcRecordID: {
+                // WARC-Record-ID   = "WARC-Record-ID" ":" "<" uri ">"
+                warcRecordID_ = {removeAngleBrackets(value), true};
+                break;
             }
-            contentLength_.second = true;
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcDate)) {
-            // WARC-Date = "WARC-Date" ":" w3c-iso8601
-            // w3c-iso8601 = <a UTC timestamp formatted according to [W3CDTF]>
-            // TODO: no good stdlib way to parse date without allocating
-            warcDate_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcType)) {
-            // WARC-Type   = "WARC-Type" ":" record-type
-            // record-type = "warcinfo" | "response" | "resource" | "request" |
-            // "metadata" | "revisit" | "conversion" | "continuation"
-            const record_type::RecordType type = warc::record_type::fromString(value);
-            if (type == warc::record_type::RecordType::kInvalid) {
-                return {warc::error::Error::kInvalidResponseType, consumed};
+            case warc::field::Field::kContentLength: {
+                // Content-Length   = "Content-Length" ":" 1*DIGIT
+                const auto result = std::from_chars(value.data(), value.data() + value.size(), contentLength_.first);
+                if (result.ec == std::errc::invalid_argument || result.ec == std::errc::result_out_of_range) {
+                    return {warc::error::Error::kInvalidInteger, consumed};
+                }
+                contentLength_.second = true;
+                break;
             }
-            warcType_ = {type, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kContentType)) {
-            // Content-Type  = "Content-Type" ":" media-type
-            contentType_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcConcurrentTo)) {
-            // WARC-Concurrent-To = "WARC-Concurrent-To" ":" "<" uri ">"
-            warcConcurrentTo_ = {removeAngleBrackets(value), true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcBlockDigest)) {
-            // WARC-Block-Digest = "WARC-Block-Digest" ":" labelled-digest
-            // labelled-digest   = algorithm ":" digest-value
-            // algorithm         = token
-            // digest-value      = token
-            warcBlockDigest_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcPayloadDigest)) {
-            // WARC-Payload-Digest = "WARC-Payload-Digest" ":" labelled-digest
-            warcPayloadDigest_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcIPAddress)) {
-            // WARC-IP-Address = "WARC-IP-Address" ":" (ipv4 | ipv6)
-            // ipv4            = <"dotted quad">
-            // ipv6            = <per section 2.2 of RFC4291>
-            warcIPAddress_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcRefersTo)) {
-            // WARC-Refers-To  = "WARC-Refers-To" ":" "<" uri ">"
-            warcRefersTo_ = {removeAngleBrackets(value), true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcRefersToTargetURI)) {
-            // WARC-Refers-To-Target-URI = "WARC-Refers-To-Target-URI" ":" uri
-            warcRefersToTargetURI_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcRefersToDate)) {
-            // WARC-Refers-To-Date = "WARC-Refers-To-Date" ":" w3c-iso8601
-            warcRefersToDate_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcTargetURI)) {
-            // WARC-Target-URI    = "WARC-Target-URI" ":" uri
-            // Community recommendation: Readers should remove enclosing “<” and “>” characters from the WARC-Target-URI field value if present before processing the URI.
-            warcTargetURI_ = {removeAngleBrackets(value), true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcTruncated)) {
-            // WARC-Truncated = "WARC-Truncated" ":" reason-token
-            // reason-token   = "length"         ; exceeds configured max
-            //                                   ; length
-            //                | "time"           ; exceeds configured max time
-            //                | "disconnect"     ; network disconnect
-            //                | "unspecified"    ; other/unknown reason
-            const warc::truncated_reason::TruncatedReason reason = warc::truncated_reason::fromString(value);
-            if (reason == warc::truncated_reason::TruncatedReason::kInvalid) {
-                return {warc::error::Error::kInvalidTruncatedReason, consumed};
+            case warc::field::Field::kWarcDate: {
+                // WARC-Date = "WARC-Date" ":" w3c-iso8601
+                // w3c-iso8601 = <a UTC timestamp formatted according to [W3CDTF]>
+                // TODO: parse date
+                warcDate_ = {value, true};
+                break;
             }
-            warcTruncated_ = {reason, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcWarcinfoID)) {
-            // WARC-Warcinfo-ID = "WARC-Warcinfo-ID" ":" "<" uri ">"
-            warcWarcinfoID_ = {removeAngleBrackets(value), true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcFilename)) {
-            // WARC-Filename = "WARC-Filename" ":" ( TEXT | quoted-string )
-            warcFilename_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcProfile)) {
-            // WARC-Profile = "WARC-Profile" ":" uri
-            // Community recommendation: Readers should remove enclosing “<” and “>” characters from the WARC-Profile field value if present before processing the URI.
-            warcProfile_ = {removeAngleBrackets(value), true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcIdentifiedPayloadType)) {
-            // WARC-Identified-Payload-Type = "WARC-Identified-Payload-Type" ":" media-type
-            warcIdentifiedPayloadType_ = {value, true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcSegmentNumber)) {
-            // WARC-Segment-Number = "WARC-Segment-Number" ":" 1*DIGIT
-            const auto result = std::from_chars(value.data(), value.data() + value.size(), warcSegmentNumber_.first);
-            if (result.ec == std::errc::invalid_argument || result.ec == std::errc::result_out_of_range) {
-                return {warc::error::Error::kInvalidInteger, consumed};
+            case warc::field::Field::kWarcType: {
+                // WARC-Type   = "WARC-Type" ":" record-type
+                // record-type = "warcinfo" | "response" | "resource" | "request" |
+                // "metadata" | "revisit" | "conversion" | "continuation"
+                const record_type::RecordType type = warc::record_type::fromString(value);
+                if (type == warc::record_type::RecordType::kInvalid) {
+                    return {warc::error::Error::kInvalidResponseType, consumed};
+                }
+                warcType_ = {type, true};
+                break;
             }
-            warcSegmentNumber_.second = true;
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcSegmentOriginID)) {
-            // WARC-Segment-Origin-ID = "WARC-Segment-Origin-ID" ":" "<" uri ">"
-            warcSegmentOriginID_ = {removeAngleBrackets(value), true};
-        } else if (caseInsensitiveEqual(key, warc::field::kWarcSegmentTotalLength)) {
-            // WARC-Segment-Total-Length = "WARC-Segment-Total-Length" ":" 1*DIGIT
-            const auto result = std::from_chars(value.data(), value.data() + value.size(), warcSegmentTotalLength_.first);
-            if (result.ec == std::errc::invalid_argument || result.ec == std::errc::result_out_of_range) {
-                return {warc::error::Error::kInvalidInteger, consumed};
+            case warc::field::Field::kContentType: {
+                // Content-Type  = "Content-Type" ":" media-type
+                contentType_ = {value, true};
+                break;
             }
-            warcSegmentTotalLength_.second = true;
+            case warc::field::Field::kWarcConcurrentTo: {
+                // WARC-Concurrent-To = "WARC-Concurrent-To" ":" "<" uri ">"
+                warcConcurrentTo_ = {removeAngleBrackets(value), true};
+                break;
+            }
+            case warc::field::Field::kWarcBlockDigest: {
+                // WARC-Block-Digest = "WARC-Block-Digest" ":" labelled-digest
+                // labelled-digest   = algorithm ":" digest-value
+                // algorithm         = token
+                // digest-value      = token
+                warcBlockDigest_ = {value, true};
+                break;
+            }
+            case warc::field::Field::kWarcPayloadDigest: {
+                // WARC-Payload-Digest = "WARC-Payload-Digest" ":" labelled-digest
+                warcPayloadDigest_ = {value, true};
+                break;
+            }
+            case warc::field::Field::kWarcIPAddress: {
+                // WARC-IP-Address = "WARC-IP-Address" ":" (ipv4 | ipv6)
+                // ipv4            = <"dotted quad">
+                // ipv6            = <per section 2.2 of RFC4291>
+                warcIPAddress_ = {value, true};
+                break;
+            }
+            case warc::field::Field::kWarcRefersTo: {
+                // WARC-Refers-To  = "WARC-Refers-To" ":" "<" uri ">"
+                warcRefersTo_ = {removeAngleBrackets(value), true};
+                break;
+            }
+            case warc::field::Field::kWarcRefersToTargetURI: {
+                // WARC-Refers-To-Target-URI = "WARC-Refers-To-Target-URI" ":" uri
+                warcRefersToTargetURI_ = {value, true};
+                break;
+            }
+            case warc::field::Field::kWarcRefersToDate: {
+                // WARC-Refers-To-Date = "WARC-Refers-To-Date" ":" w3c-iso8601
+                // TODO: parse date
+                warcRefersToDate_ = {value, true};
+                break;
+            }
+            case warc::field::Field::kWarcTargetURI: {
+                // WARC-Target-URI    = "WARC-Target-URI" ":" uri
+                // Community recommendation: Readers should remove enclosing “<” and “>” characters from the WARC-Target-URI field value if present before processing the URI.
+                warcTargetURI_ = {removeAngleBrackets(value), true};
+                break;
+            }
+            case warc::field::Field::kWarcTruncated: {
+                // WARC-Truncated = "WARC-Truncated" ":" reason-token
+                // reason-token   = "length"         ; exceeds configured max
+                //                                   ; length
+                //                | "time"           ; exceeds configured max time
+                //                | "disconnect"     ; network disconnect
+                //                | "unspecified"    ; other/unknown reason
+                const warc::truncated_reason::TruncatedReason reason = warc::truncated_reason::fromString(value);
+                if (reason == warc::truncated_reason::TruncatedReason::kInvalid) {
+                    return {warc::error::Error::kInvalidTruncatedReason, consumed};
+                }
+                warcTruncated_ = {reason, true};
+                break;
+            }
+            case warc::field::Field::kWarcWarcinfoID: {
+                // WARC-Warcinfo-ID = "WARC-Warcinfo-ID" ":" "<" uri ">"
+                warcWarcinfoID_ = {removeAngleBrackets(value), true};
+                break;
+            }
+            case warc::field::Field::kWarcFilename: {
+                // WARC-Filename = "WARC-Filename" ":" ( TEXT | quoted-string )
+                warcFilename_ = {value, true};
+                break;
+            }
+            case warc::field::Field::kWarcProfile: {
+                // WARC-Profile = "WARC-Profile" ":" uri
+                // Community recommendation: Readers should remove enclosing “<” and “>” characters from the WARC-Profile field value if present before processing the URI.
+                warcProfile_ = {removeAngleBrackets(value), true};
+                break;
+            }
+            case warc::field::Field::kWarcIdentifiedPayloadType: {
+                // WARC-Identified-Payload-Type = "WARC-Identified-Payload-Type" ":" media-type
+                warcIdentifiedPayloadType_ = {value, true};
+                break;
+            }
+            case warc::field::Field::kWarcSegmentNumber: {
+                // WARC-Segment-Number = "WARC-Segment-Number" ":" 1*DIGIT
+                const auto result = std::from_chars(value.data(), value.data() + value.size(), warcSegmentNumber_.first);
+                if (result.ec == std::errc::invalid_argument || result.ec == std::errc::result_out_of_range) {
+                    return {warc::error::Error::kInvalidInteger, consumed};
+                }
+                warcSegmentNumber_.second = true;
+                break;
+            }
+            case warc::field::Field::kWarcSegmentOriginID: {
+                // WARC-Segment-Origin-ID = "WARC-Segment-Origin-ID" ":" "<" uri ">"
+                warcSegmentOriginID_ = {removeAngleBrackets(value), true};
+                break;
+            }
+            case warc::field::Field::kWarcSegmentTotalLength: {
+                // WARC-Segment-Total-Length = "WARC-Segment-Total-Length" ":" 1*DIGIT
+                const auto result = std::from_chars(value.data(), value.data() + value.size(), warcSegmentTotalLength_.first);
+                if (result.ec == std::errc::invalid_argument || result.ec == std::errc::result_out_of_range) {
+                    return {warc::error::Error::kInvalidInteger, consumed};
+                }
+                warcSegmentTotalLength_.second = true;
+                break;
+            }
+            default:
+                return {warc::error::Error::kInvalidField, consumed};
         }
 
         consumed = next_line_end + kCRLF.size();

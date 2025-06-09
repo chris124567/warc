@@ -10,6 +10,7 @@ enum class Error {
     kOther,
     kInvalidPrefix,
     kInvalidHeader,
+    kInvalidField,
     kInvalidInteger,
     kInvalidResponseType,
     kInvalidTruncatedReason
@@ -54,6 +55,7 @@ std::ostream& operator<<(std::ostream& os, TruncatedReason type);
 
 namespace field {
 enum class Field {
+    kInvalid,
     kWarcRecordID,
     kContentLength,
     kWarcDate,
@@ -74,8 +76,7 @@ enum class Field {
     kWarcIdentifiedPayloadType,
     kWarcSegmentNumber,
     kWarcSegmentOriginID,
-    kWarcSegmentTotalLength,
-    kInvalid  // fallback
+    kWarcSegmentTotalLength
 };
 
 std::string_view toString(Field field);

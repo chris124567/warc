@@ -10,6 +10,8 @@ std::string_view warc::error::toString(warc::error::Error error) {
             return "invalid_prefix";
         case warc::error::Error::kInvalidHeader:
             return "invalid_header";
+        case warc::error::Error::kInvalidField:
+            return "invalid_field";
         case warc::error::Error::kInvalidInteger:
             return "invalid_integer";
         case warc::error::Error::kInvalidResponseType:
@@ -30,6 +32,8 @@ warc::error::Error fromString(const std::string_view s) {
         return warc::error::Error::kInvalidPrefix;
     } else if (s == "invalid_header") {
         return warc::error::Error::kInvalidHeader;
+    } else if (s == "invalid_field") {
+        return warc::error::Error::kInvalidField;
     } else if (s == "invalid_integer") {
         return warc::error::Error::kInvalidInteger;
     } else if (s == "invalid_response_type") {
@@ -126,76 +130,106 @@ std::ostream& warc::truncated_reason::operator<<(std::ostream& os, warc::truncat
 
 std::string_view warc::field::toString(warc::field::Field field) {
     switch (field) {
-        case Field::kWarcRecordID: return "WARC-Record-ID";
-        case Field::kContentLength: return "Content-Length";
-        case Field::kWarcDate: return "WARC-Date";
-        case Field::kWarcType: return "WARC-Type";
-        case Field::kContentType: return "Content-Type";
-        case Field::kWarcConcurrentTo: return "WARC-Concurrent-To";
-        case Field::kWarcBlockDigest: return "WARC-Block-Digest";
-        case Field::kWarcPayloadDigest: return "WARC-Payload-Digest";
-        case Field::kWarcIPAddress: return "WARC-IP-Address";
-        case Field::kWarcRefersTo: return "WARC-Refers-To";
-        case Field::kWarcRefersToTargetURI: return "WARC-Refers-To-Target-URI";
-        case Field::kWarcRefersToDate: return "WARC-Refers-To-Date";
-        case Field::kWarcTargetURI: return "WARC-Target-URI";
-        case Field::kWarcTruncated: return "WARC-Truncated";
-        case Field::kWarcWarcinfoID: return "WARC-Warcinfo-ID";
-        case Field::kWarcFilename: return "WARC-Filename";
-        case Field::kWarcProfile: return "WARC-Profile";
-        case Field::kWarcIdentifiedPayloadType: return "WARC-Identified-Payload-Type";
-        case Field::kWarcSegmentNumber: return "WARC-Segment-Number";
-        case Field::kWarcSegmentOriginID: return "WARC-Segment-Origin-ID";
-        case Field::kWarcSegmentTotalLength: return "WARC-Segment-Total-Length";
-        default: return "Invalid";
+        case Field::kWarcRecordID:
+            return "WARC-Record-ID";
+        case Field::kContentLength:
+            return "Content-Length";
+        case Field::kWarcDate:
+            return "WARC-Date";
+        case Field::kWarcType:
+            return "WARC-Type";
+        case Field::kContentType:
+            return "Content-Type";
+        case Field::kWarcConcurrentTo:
+            return "WARC-Concurrent-To";
+        case Field::kWarcBlockDigest:
+            return "WARC-Block-Digest";
+        case Field::kWarcPayloadDigest:
+            return "WARC-Payload-Digest";
+        case Field::kWarcIPAddress:
+            return "WARC-IP-Address";
+        case Field::kWarcRefersTo:
+            return "WARC-Refers-To";
+        case Field::kWarcRefersToTargetURI:
+            return "WARC-Refers-To-Target-URI";
+        case Field::kWarcRefersToDate:
+            return "WARC-Refers-To-Date";
+        case Field::kWarcTargetURI:
+            return "WARC-Target-URI";
+        case Field::kWarcTruncated:
+            return "WARC-Truncated";
+        case Field::kWarcWarcinfoID:
+            return "WARC-Warcinfo-ID";
+        case Field::kWarcFilename:
+            return "WARC-Filename";
+        case Field::kWarcProfile:
+            return "WARC-Profile";
+        case Field::kWarcIdentifiedPayloadType:
+            return "WARC-Identified-Payload-Type";
+        case Field::kWarcSegmentNumber:
+            return "WARC-Segment-Number";
+        case Field::kWarcSegmentOriginID:
+            return "WARC-Segment-Origin-ID";
+        case Field::kWarcSegmentTotalLength:
+            return "WARC-Segment-Total-Length";
+        default:
+            return "Invalid";
     }
 }
 
-warc::field::Field fromString(std::string_view s) {
-    if (s == "WARC-Record-ID") {
-        return warc::Field::kWarcRecordID;
-    } else if (s == "Content-Length") {
-        return warc::Field::kContentLength;
-    } else if (s == "WARC-Date") {
-        return warc::Field::kWarcDate;
-    } else if (s == "WARC-Type") {
-        return warc::Field::kWarcType;
-    } else if (s == "Content-Type") {
-        return warc::Field::kContentType;
-    } else if (s == "WARC-Concurrent-To") {
-        return warc::Field::kWarcConcurrentTo;
-    } else if (s == "WARC-Block-Digest") {
-        return warc::Field::kWarcBlockDigest;
-    } else if (s == "WARC-Payload-Digest") {
-        return warc::Field::kWarcPayloadDigest;
-    } else if (s == "WARC-IP-Address") {
-        return warc::Field::kWarcIPAddress;
-    } else if (s == "WARC-Refers-To") {
-        return warc::Field::kWarcRefersTo;
-    } else if (s == "WARC-Refers-To-Target-URI") {
-        return warc::Field::kWarcRefersToTargetURI;
-    } else if (s == "WARC-Refers-To-Date") {
-        return warc::Field::kWarcRefersToDate;
-    } else if (s == "WARC-Target-URI") {
-        return warc::Field::kWarcTargetURI;
-    } else if (s == "WARC-Truncated") {
-        return warc::Field::kWarcTruncated;
-    } else if (s == "WARC-Warcinfo-ID") {
-        return warc::Field::kWarcWarcinfoID;
-    } else if (s == "WARC-Filename") {
-        return warc::Field::kWarcFilename;
-    } else if (s == "WARC-Profile") {
-        return warc::Field::kWarcProfile;
-    } else if (s == "WARC-Identified-Payload-Type") {
-        return warc::Field::kWarcIdentifiedPayloadType;
-    } else if (s == "WARC-Segment-Number") {
-        return warc::Field::kWarcSegmentNumber;
-    } else if (s == "WARC-Segment-Origin-ID") {
-        return warc::Field::kWarcSegmentOriginID;
-    } else if (s == "WARC-Segment-Total-Length") {
-        return warc::Field::kWarcSegmentTotalLength;
+// caseInsensitiveEqual compares two strings for equality ignoring case.
+bool caseInsensitiveEqual(const std::string_view s1, const std::string_view s2) {
+    return std::equal(s1.begin(), s1.end(), s2.begin(), s2.end(), [](const char c1, const char c2) {
+        return std::tolower(c1) == std::tolower(c2);
+    });
+}
+
+// Field names are not case-sensitive.
+warc::field::Field warc::field::fromString(const std::string_view s) {
+    if (caseInsensitiveEqual(s, "WARC-Record-ID")) {
+        return warc::field::Field::kWarcRecordID;
+    } else if (caseInsensitiveEqual(s, "Content-Length")) {
+        return warc::field::Field::kContentLength;
+    } else if (caseInsensitiveEqual(s, "WARC-Date")) {
+        return warc::field::Field::kWarcDate;
+    } else if (caseInsensitiveEqual(s, "WARC-Type")) {
+        return warc::field::Field::kWarcType;
+    } else if (caseInsensitiveEqual(s, "Content-Type")) {
+        return warc::field::Field::kContentType;
+    } else if (caseInsensitiveEqual(s, "WARC-Concurrent-To")) {
+        return warc::field::Field::kWarcConcurrentTo;
+    } else if (caseInsensitiveEqual(s, "WARC-Block-Digest")) {
+        return warc::field::Field::kWarcBlockDigest;
+    } else if (caseInsensitiveEqual(s, "WARC-Payload-Digest")) {
+        return warc::field::Field::kWarcPayloadDigest;
+    } else if (caseInsensitiveEqual(s, "WARC-IP-Address")) {
+        return warc::field::Field::kWarcIPAddress;
+    } else if (caseInsensitiveEqual(s, "WARC-Refers-To")) {
+        return warc::field::Field::kWarcRefersTo;
+    } else if (caseInsensitiveEqual(s, "WARC-Refers-To-Target-URI")) {
+        return warc::field::Field::kWarcRefersToTargetURI;
+    } else if (caseInsensitiveEqual(s, "WARC-Refers-To-Date")) {
+        return warc::field::Field::kWarcRefersToDate;
+    } else if (caseInsensitiveEqual(s, "WARC-Target-URI")) {
+        return warc::field::Field::kWarcTargetURI;
+    } else if (caseInsensitiveEqual(s, "WARC-Truncated")) {
+        return warc::field::Field::kWarcTruncated;
+    } else if (caseInsensitiveEqual(s, "WARC-Warcinfo-ID")) {
+        return warc::field::Field::kWarcWarcinfoID;
+    } else if (caseInsensitiveEqual(s, "WARC-Filename")) {
+        return warc::field::Field::kWarcFilename;
+    } else if (caseInsensitiveEqual(s, "WARC-Profile")) {
+        return warc::field::Field::kWarcProfile;
+    } else if (caseInsensitiveEqual(s, "WARC-Identified-Payload-Type")) {
+        return warc::field::Field::kWarcIdentifiedPayloadType;
+    } else if (caseInsensitiveEqual(s, "WARC-Segment-Number")) {
+        return warc::field::Field::kWarcSegmentNumber;
+    } else if (caseInsensitiveEqual(s, "WARC-Segment-Origin-ID")) {
+        return warc::field::Field::kWarcSegmentOriginID;
+    } else if (caseInsensitiveEqual(s, "WARC-Segment-Total-Length")) {
+        return warc::field::Field::kWarcSegmentTotalLength;
     } else {
-        return warc::Field::kInvalid;
+        return warc::field::Field::kInvalid;
     }
 }
 

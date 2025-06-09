@@ -14,11 +14,8 @@ int main(void) {
     warc::Record record;
     const auto [error, next_index] = record.parse(content);
     if (error != warc::error::Error::kSuccess) {
-        // std::cerr << "Got parse error: " << error << std::endl;
+        std::cerr << "Got parse error: " << error << std::endl;
         return EXIT_FAILURE;
     }
     std::cout << "Next index: " << next_index << std::endl;
-
-    auto type = warc::error::Error::kSuccess;
-    std::cout << "RecordType: " << type << "\n";
 }
