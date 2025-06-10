@@ -1,0 +1,2 @@
+# warc
+C++ library to parse WARC files according to the [specification](https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1-annotated/).  Work in progress with no tests or support for decompressing response bodies or parsing HTTP headers in responses.  Basic parsing works on a recent common crawl dump file.

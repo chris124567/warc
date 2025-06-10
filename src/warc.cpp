@@ -229,6 +229,7 @@ std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view
                 break;
             }
             case warc::field::Field::kWarcProtocol: {
+                // "WARC-Protocol" ":" protocol-id
                 const warc::protocol::Protocol protocol = warc::protocol::fromString(value);
                 if (protocol == warc::protocol::Protocol::kInvalid) {
                     return {warc::error::Error::kInvalidProtocol, consumed};
