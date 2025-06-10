@@ -60,7 +60,7 @@ int main(void) {
             break;
             // return EXIT_FAILURE;
         }
-        std::cout << "Type: " << record.warcType().first << std::endl;
+        // std::cout << "Type: " << record.warcType().first << std::endl;
         // std::cout << "Body:\n"
         // << record.rawBody().first << std::endl;
         // std::cout << "Consumed: " << consumed << std::endl;

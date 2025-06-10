@@ -11,7 +11,7 @@ namespace warc {
 
 class Record {
    public:
-    Record();
+    Record(){};
     // parse returns a parsing error (Error::Success if there was none) and the
     // amount of bytes consumed.  You can use the amount of bytes consumed to
     // adjust the string_view to get the next record if you are working with
