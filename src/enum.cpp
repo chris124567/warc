@@ -18,6 +18,12 @@ std::string_view warc::error::toString(warc::error::Error error) {
             return "invalid_response_type";
         case warc::error::Error::kInvalidTruncatedReason:
             return "invalid_truncated_reason";
+        case warc::error::Error::kMissingMandatoryField:
+            return "missing_mandatory_field";
+        case warc::error::Error::kInvalidContentLength:
+            return "invalid_content_length";
+        case warc::error::Error::kInvalidProtocol:
+            return "invalid_protocol";
         default:
             return "invalid";
     }
@@ -40,6 +46,12 @@ warc::error::Error fromString(const std::string_view s) {
         return warc::error::Error::kInvalidResponseType;
     } else if (s == "invalid_truncated_reason") {
         return warc::error::Error::kInvalidTruncatedReason;
+    } else if (s == "missing_mandatory_field") {
+        return warc::error::Error::kMissingMandatoryField;
+    } else if (s == "invalid_content_length") {
+        return warc::error::Error::kInvalidContentLength;
+    } else if (s == "invalid_protocol") {
+        return warc::error::Error::kInvalidProtocol;
     }
     return warc::error::Error::kInvalid;
 }
@@ -128,6 +140,106 @@ std::ostream& warc::truncated_reason::operator<<(std::ostream& os, warc::truncat
     return os << warc::truncated_reason::toString(err);
 }
 
+std::string_view warc::protocol::toString(warc::protocol::Protocol protocol) {
+    switch (protocol) {
+        case warc::protocol::Protocol::kDns:
+            return "dns";
+        case warc::protocol::Protocol::kFtp:
+            return "ftp";
+        case warc::protocol::Protocol::kGemini:
+            return "gemini";
+        case warc::protocol::Protocol::kGopher:
+            return "gopher";
+        case warc::protocol::Protocol::kHttp_0_9:
+            return "http/0.9";
+        case warc::protocol::Protocol::kHttp_1_0:
+            return "http/1.0";
+        case warc::protocol::Protocol::kHttp_1_1:
+            return "http/1.1";
+        case warc::protocol::Protocol::kH2:
+            return "h2";
+        case warc::protocol::Protocol::kH2c:
+            return "h2c";
+        case warc::protocol::Protocol::kH3:
+            return "h3";
+        case warc::protocol::Protocol::kQuic_1:
+            return "quic/1";
+        case warc::protocol::Protocol::kQuic_2:
+            return "quic/2";
+        case warc::protocol::Protocol::kSpdy_1:
+            return "spdy/1";
+        case warc::protocol::Protocol::kSpdy_2:
+            return "spdy/2";
+        case warc::protocol::Protocol::kSpdy_3:
+            return "spdy/3";
+        case warc::protocol::Protocol::kSsl_2:
+            return "ssl/2";
+        case warc::protocol::Protocol::kSsl_3:
+            return "ssl/3";
+        case warc::protocol::Protocol::kTls_1_0:
+            return "tls/1.0";
+        case warc::protocol::Protocol::kTls_1_1:
+            return "tls/1.1";
+        case warc::protocol::Protocol::kTls_1_2:
+            return "tls/1.2";
+        case warc::protocol::Protocol::kTls_1_3:
+            return "tls/1.3";
+        default:
+            return "invalid";
+    }
+}
+
+warc::protocol::Protocol warc::protocol::fromString(const std::string_view s) {
+    if (s == "dns") {
+        return warc::protocol::Protocol::kDns;
+    } else if (s == "ftp") {
+        return warc::protocol::Protocol::kFtp;
+    } else if (s == "gemini") {
+        return warc::protocol::Protocol::kGemini;
+    } else if (s == "gopher") {
+        return warc::protocol::Protocol::kGopher;
+    } else if (s == "http/0.9") {
+        return warc::protocol::Protocol::kHttp_0_9;
+    } else if (s == "http/1.0") {
+        return warc::protocol::Protocol::kHttp_1_0;
+    } else if (s == "http/1.1") {
+        return warc::protocol::Protocol::kHttp_1_1;
+    } else if (s == "h2") {
+        return warc::protocol::Protocol::kH2;
+    } else if (s == "h2c") {
+        return warc::protocol::Protocol::kH2c;
+    } else if (s == "h3") {
+        return warc::protocol::Protocol::kH3;
+    } else if (s == "quic/1") {
+        return warc::protocol::Protocol::kQuic_1;
+    } else if (s == "quic/2") {
+        return warc::protocol::Protocol::kQuic_2;
+    } else if (s == "spdy/1") {
+        return warc::protocol::Protocol::kSpdy_1;
+    } else if (s == "spdy/2") {
+        return warc::protocol::Protocol::kSpdy_2;
+    } else if (s == "spdy/3") {
+        return warc::protocol::Protocol::kSpdy_3;
+    } else if (s == "ssl/2") {
+        return warc::protocol::Protocol::kSsl_2;
+    } else if (s == "ssl/3") {
+        return warc::protocol::Protocol::kSsl_3;
+    } else if (s == "tls/1.0") {
+        return warc::protocol::Protocol::kTls_1_0;
+    } else if (s == "tls/1.1") {
+        return warc::protocol::Protocol::kTls_1_1;
+    } else if (s == "tls/1.2") {
+        return warc::protocol::Protocol::kTls_1_2;
+    } else if (s == "tls/1.3") {
+        return warc::protocol::Protocol::kTls_1_3;
+    }
+    return warc::protocol::Protocol::kInvalid;
+}
+
+std::ostream& operator<<(std::ostream& os, warc::protocol::Protocol protocol) {
+    return os << warc::protocol::toString(protocol);
+}
+
 std::string_view warc::field::toString(warc::field::Field field) {
     switch (field) {
         case Field::kWarcRecordID:
@@ -172,19 +284,22 @@ std::string_view warc::field::toString(warc::field::Field field) {
             return "WARC-Segment-Origin-ID";
         case Field::kWarcSegmentTotalLength:
             return "WARC-Segment-Total-Length";
+        case Field::kWarcProtocol:
+            return "WARC-Protocol";
         default:
             return "Invalid";
     }
 }
 
 // caseInsensitiveEqual compares two strings for equality ignoring case.
-bool caseInsensitiveEqual(const std::string_view s1, const std::string_view s2) {
+constexpr bool caseInsensitiveEqual(const std::string_view s1, const std::string_view s2) {
     return std::equal(s1.begin(), s1.end(), s2.begin(), s2.end(), [](const char c1, const char c2) {
         return std::tolower(c1) == std::tolower(c2);
     });
 }
 
 // Field names are not case-sensitive.
+// https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1-annotated/#file-and-record-model
 warc::field::Field warc::field::fromString(const std::string_view s) {
     if (caseInsensitiveEqual(s, "WARC-Record-ID")) {
         return warc::field::Field::kWarcRecordID;
@@ -228,6 +343,8 @@ warc::field::Field warc::field::fromString(const std::string_view s) {
         return warc::field::Field::kWarcSegmentOriginID;
     } else if (caseInsensitiveEqual(s, "WARC-Segment-Total-Length")) {
         return warc::field::Field::kWarcSegmentTotalLength;
+    } else if (caseInsensitiveEqual(s, "WARC-Protocol")) {
+        return warc::field::Field::kWarcProtocol;
     } else {
         return warc::field::Field::kInvalid;
     }

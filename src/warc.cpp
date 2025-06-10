@@ -13,7 +13,7 @@ warc::Record::Record() {}
 // removeAngleBrackets removes leading and trailing angle brackets.
 // "<x>" -> "x"
 // "x" -> "x"
-std::string_view removeAngleBrackets(std::string_view s) {
+constexpr std::string_view removeAngleBrackets(std::string_view s) {
     if (s.starts_with("<") && s.ends_with(">")) {
         s.remove_prefix(1);
         s.remove_suffix(1);
@@ -21,7 +21,7 @@ std::string_view removeAngleBrackets(std::string_view s) {
     return s;
 }
 
-std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view data) {
+std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view data, bool strict) noexcept {
     /*
     CR            = <ASCII CR, carriage return>  ; (13)
     LF            = <ASCII LF, linefeed>         ; (10)
@@ -67,9 +67,9 @@ std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view
         }
 
         const auto line = data.substr(consumed, next_line_end - consumed);
-        if (line.empty() || line.find_first_not_of(kLWS) == std::string_view::npos) {
+        if (line.empty()) {
             // end of headers
-            consumed = data.find_first_not_of(kCRLF, next_line_end);
+            consumed += kCRLF.size();
             break;
         }
 
@@ -116,8 +116,6 @@ std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view
             }
             case warc::field::Field::kWarcType: {
                 // WARC-Type   = "WARC-Type" ":" record-type
-                // record-type = "warcinfo" | "response" | "resource" | "request" |
-                // "metadata" | "revisit" | "conversion" | "continuation"
                 const record_type::RecordType type = warc::record_type::fromString(value);
                 if (type == warc::record_type::RecordType::kInvalid) {
                     return {warc::error::Error::kInvalidResponseType, consumed};
@@ -179,11 +177,6 @@ std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view
             }
             case warc::field::Field::kWarcTruncated: {
                 // WARC-Truncated = "WARC-Truncated" ":" reason-token
-                // reason-token   = "length"         ; exceeds configured max
-                //                                   ; length
-                //                | "time"           ; exceeds configured max time
-                //                | "disconnect"     ; network disconnect
-                //                | "unspecified"    ; other/unknown reason
                 const warc::truncated_reason::TruncatedReason reason = warc::truncated_reason::fromString(value);
                 if (reason == warc::truncated_reason::TruncatedReason::kInvalid) {
                     return {warc::error::Error::kInvalidTruncatedReason, consumed};
@@ -235,97 +228,40 @@ std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view
                 warcSegmentTotalLength_.second = true;
                 break;
             }
-            default:
-                return {warc::error::Error::kInvalidField, consumed};
+            case warc::field::Field::kWarcProtocol: {
+                const warc::protocol::Protocol protocol = warc::protocol::fromString(value);
+                if (protocol == warc::protocol::Protocol::kInvalid) {
+                    return {warc::error::Error::kInvalidProtocol, consumed};
+                }
+                warcProtocol_ = {protocol, true};
+                break;
+            }
+            default: {
+                if (strict) {
+                    return {warc::error::Error::kInvalidField, consumed};
+                } else {
+                    // std::cout << "Unsupported field: " << key << std::endl;
+                    break;
+                }
+            }
         }
 
         consumed = next_line_end + kCRLF.size();
     }
-    std::cout << data.substr(consumed, 100) << std::endl;
+
+    // WARC-Record-ID (mandatory)
+    // Content-Length (mandatory)
+    // WARC-Date (mandatory)
+    // WARC-Type (mandatory)
+    if (!warcRecordID().second || !contentLength().second || !warcDate().second || !warcType().second) {
+        return {warc::error::Error ::kMissingMandatoryField, consumed};
+    }
+    const auto length = contentLength().first;
+    if (data.size() < (consumed + length)) {
+        return {warc::error::Error::kInvalidContentLength, consumed};
+    }
+    rawBody_ = data.substr(consumed, contentLength().first);
+    consumed += contentLength().first;
 
     return {warc::error::Error::kSuccess, consumed};
-}
-
-std::pair<std::string_view, bool> warc::Record::warcRecordID() const {
-    return warcRecordID_;
-}
-
-std::pair<size_t, bool> warc::Record::contentLength() const {
-    return contentLength_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcDate() const {
-    return warcDate_;
-}
-
-std::pair<warc::record_type::RecordType, bool> warc::Record::warcType() const {
-    return warcType_;
-}
-
-std::pair<std::string_view, bool> warc::Record::contentType() const {
-    return contentType_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcConcurrentTo() const {
-    return warcConcurrentTo_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcBlockDigest() const {
-    return warcBlockDigest_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcPayloadDigest() const {
-    return warcPayloadDigest_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcIPAddress() const {
-    return warcIPAddress_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcRefersTo() const {
-    return warcRefersTo_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcRefersToTargetURI() const {
-    return warcRefersToTargetURI_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcRefersToDate() const {
-    return warcRefersToDate_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcTargetURI() const {
-    return warcTargetURI_;
-}
-
-std::pair<warc::truncated_reason::TruncatedReason, bool> warc::Record::warcTruncated() const {
-    return warcTruncated_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcWarcinfoID() const {
-    return warcWarcinfoID_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcFilename() const {
-    return warcFilename_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcProfile() const {
-    return warcProfile_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcIdentifiedPayloadType() const {
-    return warcIdentifiedPayloadType_;
-}
-
-std::pair<size_t, bool> warc::Record::warcSegmentNumber() const {
-    return warcSegmentNumber_;
-}
-
-std::pair<std::string_view, bool> warc::Record::warcSegmentOriginID() const {
-    return warcSegmentOriginID_;
-}
-
-std::pair<size_t, bool> warc::Record::warcSegmentTotalLength() const {
-    return warcSegmentTotalLength_;
 }
