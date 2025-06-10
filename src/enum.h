@@ -67,27 +67,27 @@ namespace protocol {
 
 enum class Protocol {
     kInvalid,
-    kDns,
-    kFtp,
+    kDNS,
+    kFTP,
     kGemini,
     kGopher,
-    kHttp_0_9,
-    kHttp_1_0,
-    kHttp_1_1,
+    kHTTP_0_9,
+    kHTTP_1_0,
+    kHTTP_1_1,
     kH2,
     kH2c,
     kH3,
-    kQuic_1,
-    kQuic_2,
-    kSpdy_1,
-    kSpdy_2,
-    kSpdy_3,
-    kSsl_2,
-    kSsl_3,
-    kTls_1_0,
-    kTls_1_1,
-    kTls_1_2,
-    kTls_1_3
+    kQUIC_1,
+    kQUIC_2,
+    kSPDY_1,
+    kSPDY_2,
+    kSPDY_3,
+    kSSL_2,
+    kSSL_3,
+    kTLS_1_0,
+    kTLS_1_1,
+    kTLS_1_2,
+    kTLS_1_3
 };
 
 std::string_view toString(Protocol protocol);
