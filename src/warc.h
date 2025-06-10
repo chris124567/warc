@@ -129,7 +129,7 @@ class Record {
         return warcProtocol_;
     }
 
-    // body returns the value of the content body.
+    // rawBody returns the value of the content body.
     [[nodiscard]] constexpr auto rawBody() const noexcept {
         return rawBody_;
     }
