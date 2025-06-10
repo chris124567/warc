@@ -261,7 +261,7 @@ std::pair<warc::error::Error, size_t> warc::Record::parse(const std::string_view
     if (data.size() < (consumed + length)) {
         return {warc::error::Error::kInvalidContentLength, consumed};
     }
-    rawBody_ = data.substr(consumed, contentLength().first);
+    rawBody_ = {data.substr(consumed, contentLength().first), true};
     consumed += contentLength().first;
 
     return {warc::error::Error::kSuccess, consumed};

@@ -158,7 +158,7 @@ class Record {
     std::pair<size_t, bool> warcSegmentTotalLength_{};
     std::pair<protocol::Protocol, bool> warcProtocol_{};
 
-    std::string_view rawBody_;
+    std::pair<std::string_view, bool> rawBody_{};
 };
 }  // namespace warc
 
